@@ -1,0 +1,38 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "sourceRoot": "src",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "baseUrl": "src",
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "lib": [
+      "es2017", "dom"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.js",
+    "./test/**/*.ts",
+    "./custom_typings/**/*.d.ts",
+    "node_modules/@types",
+    "./typings/index.d.ts"
+  ],
+  "exclude": [
+    "dist",
+    // "node_modules"
+  ],
+  "atom": {
+    "rewriteTsconfig": false
+  }
+}

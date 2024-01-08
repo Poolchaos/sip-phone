@@ -1,0 +1,20 @@
+<template>
+  <div class="toggle-switch ${disabled ?'disabled': ''}">
+    <input
+      id="toggle-switch"
+      class="toggle-switch__checkbox"
+      type="checkbox"
+      checked.bind="checked"
+      change.delegate="onChangeHandler($event)"
+    />
+    <label class="toggle-switch__label" for="toggle-switch">
+      <span class="toggle-switch__label__text">${displayText}</span>
+      <span class="toggle-switch__icon">
+        <zai-icon
+          icon="chevron-double-${checked ? 'left' : 'right'}"
+          icon-color="${checked ? 'green' : 'yellow'}"
+        ></zai-icon>
+      </span>
+    </label>
+  </div>
+</template>

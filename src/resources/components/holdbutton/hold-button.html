@@ -1,0 +1,7 @@
+<template>
+  <!-- <button class="hold" class.bind="interaction.state.onHold ? 'active' : ''" if.bind="interaction.state.onCall" click.delegate="toggleHold()"> -->
+  <button class="hold ${isHold ? 'active' : ''}" click.delegate="toggleHold()">
+    <i class="z-icon z-icon-hold"></i>
+    <div class="active-note">Hold</div>
+  </button>
+</template>

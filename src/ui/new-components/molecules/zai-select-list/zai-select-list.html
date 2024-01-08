@@ -1,0 +1,14 @@
+<template>
+  <div class="zai-select-list" click.delegate="toggleDisplayOptions()">
+    <div class="zai-select-list__selected">
+      <slot name="selected"></slot>
+    </div>
+    <div class="zai-select-list__options ${displayOptions ? 'active' : ''}">
+      <slot name="options"></slot>
+    </div>
+    <div class="zai-select-list__toggle ">
+      <i class="z-icon-chevron-${displayOptions ? 'up' : 'down'}"></i>
+      <!--    TODO: add zai-icon-->
+    </div>
+  </div>
+</template>

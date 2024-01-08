@@ -1,0 +1,135 @@
+<template>
+  <div class="routing-tab" show.bind="!transferEnabled">
+    <div class="item" class.bind="showDefaultTab ? 'active' : ''" click.delegate="changeTab('dialpad')">Dialpad</div>
+    <div
+      class="item ${!isWrapUp ? 'disabled':'background-yellow'}"
+      class.bind="showDefaultTab ? '' : 'active'"
+      click.delegate="changeTab('calls')"
+    >
+      Calls ${appStore.activeinteractions.length > 0 ? '(' + appStore.activeinteractions.length + ')' : ''}
+    </div>
+  </div>
+  <div class="routing-tab" if.bind="transferEnabled">
+    <div class="item transfer active">Transfer</div>
+  </div>
+
+  <div
+    class="tab"
+    class.bind="showDefaultTab ? 'active' : ''"
+    if.bind="!transferEnabled"
+  >
+    <z-dialpad
+      name="main-dialpad"
+      number.two-way="targetNumber"
+      dtmf-key-handler.bind="dialpadDtmfHandler"
+      submit-number-handler.bind="doStartOutboundCall"
+      call-history.bind="callHistory"
+    ></z-dialpad>
+
+    <div class="flex flex--justify-between flex--grow-1 flex--direction-cols">
+      <div class="container-call-options">
+        <div class="grouped ${appStore.callInfo.onCall ? '' : 'clear'}">
+          
+          <button
+            class="volume ${showVolume ? 'active' : ''}"
+            click.delegate="toggleVolume()"
+            style="width: 100%;"
+            if.bind="appStore.callInfo.onCall"
+          >
+            <i class="fas fa-volume-up" style="padding: 0.6rem;"></i>
+          </button>
+          
+          <button
+            class="mute ${appStore.callInfo.muted ? 'active' : ''}"
+            click.delegate="toggleMute()"
+            if.bind="!showVolume && appStore.callInfo.onCall"
+          >
+            <i class="z-icon z-icon-mute"></i>
+            <div class="active-note">Mute</div>
+          </button>
+
+          <hold-button
+            is-hold.bind="appStore.callInfo.hold"
+            click-handler.bind="toggleHold"
+            if.bind="!showVolume && appStore.callInfo.onCall"
+          ></hold-button>
+
+          <transfer-button
+            click-handler.bind="doTransferHandler"
+            if.bind="!showVolume && appStore.callInfo.onCall"
+          ></transfer-button>
+
+          <z-volume-toggle if.bind="showVolume || !appStore.callInfo.onCall" on-call.bind="appStore.callInfo.onCall"></z-volume-toggle>
+        </div>
+      </div>
+
+      <div class="flex flex--justify-evenly" style="margin: 0px 40px;" if.bind="appStore.callInfo.remote && endCallEnabled">
+        <div
+          class="number is-relative text-center medium-font"
+          if.bind="appStore.callInfo.ringing && !appStore.callInfo.onCall"
+        >Ringing</div>
+        <timer
+          if.bind="appStore.callInfo.onCall && appStore.callInfo.startTime"
+          start-time.bind="appStore.callInfo.startTime"
+          end-time.bind="appStore.callInfo.endTime"
+        ></timer>
+        <div class="number is-relative text-center medium-font">
+          ${appStore.callInfo.remote}
+        </div>
+        
+      </div>
+      
+      <div class="flex flex--justify-evenly flex--align-center" if.bind="appStore.routingStatusActivity.wrapUp && endCallOutcomeEnabled">
+        <timer
+          if.bind="appStore.callInfo.endTime"
+          start-time.bind="appStore.callInfo.endTime"
+        ></timer>
+        <div class="number is-relative text-center medium-font">
+          ${appStore.callInfo.title}
+        </div>
+      </div>
+      <div class="main-dialer">
+        <green-phone-button if.bind="canMakeCall" click-handler.bind="doStartOutboundCall"></green-phone-button>
+        <green-phone-button if.bind="isPendingInbound && (!autoAnswer || forceAnswerEnabled)" click-handler.bind="doStartCall"></green-phone-button>
+        <red-phone-button
+          if.bind="isPendingInbound && !autoAnswer || appStore.callInfo.onCall || isPendingOutbound"
+          click-handler.bind="doEndCall"
+          disabled.bind="!endCallEnabled"
+        >
+        </red-phone-button>
+
+      </div>
+    </div>
+  </div>
+  
+  <z-transfer
+    if.bind="transferEnabled"
+    submit-transfer-handler.bind="submitTransferHandler"
+    cancel-transfer-handler.bind="cancelTransferHandler"
+    transfer-dialpad-dtmf-handler.bind="transferDialpadDtmfHandler"
+  >
+  </z-transfer>
+  <div class="tab" class.bind="showDefaultTab ? '' : 'active'">
+    <z-interactions
+      rtc-session.bind="appStore.callInfo"
+      interactions.bind="appStore.activeInteractions"
+      activetab.trigger="changeTab($event.detail)"
+      enabletransfer.trigger="enableTransfer($event.detail)"
+      transfer.trigger="hideTransfer()"
+      hidetransfer.trigger="hideTransfer()"
+      is-wrap-up.bind="appStore.routingStatusActivity.wrapUp"
+      wrap-up-submitting.bind="wrapUpSubmitting"
+      toggle-hold-handler.bind="toggleHold"
+      toggle-mute-handler.bind="toggleMute"
+      do-transfer-handler.bind="doTransferHandler"
+      do-start-call-handler.bind="doStartCall"
+      do-end-call-handler.bind="doEndCall"
+      do-end-wrapup-handler.bind="doEndWrapupHandler"
+      transfer-enabled.bind="transferEnabled"
+      submit-transfer-handler.bind="submitTransferHandler"
+      cancel-transfer-handler.bind="cancelTransferHandler"
+      transfer-dialpad-dtmf-handler.bind="transferDialpadDtmfHandler"
+    >
+    </z-interactions>
+  </div>
+</template>

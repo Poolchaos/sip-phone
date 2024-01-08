@@ -1,0 +1,14 @@
+<template>
+  <div
+    class="zai-button ${buttonColor ? 'button-color--' + buttonColor : ''} ${disabled ? 'disabled' : ''} ${selected ? 'selected' : ''}"
+    click.delegate="onClick(tooltip)"
+    data-title.bind="tooltip"
+  >
+    <div class="zai-button__icon">
+      <zai-icon icon.bind="icon" icon-color.bind="iconColor" if.bind="icon"></zai-icon>
+    </div>
+    <span class="zai-button__text">
+      <slot></slot>
+    </span>
+  </div>
+</template>

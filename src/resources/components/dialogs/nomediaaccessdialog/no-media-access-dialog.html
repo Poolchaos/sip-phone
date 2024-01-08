@@ -1,0 +1,40 @@
+<template>
+  <div class="not-responding-dialog" style="width:270px;">
+    <div class="content">
+      <div class="permissions-content" if.bind="!permissionDenied && !deviceNotFound && !inputDeviceNotFound && !outputDeviceNotFound">
+        To continue, please try the following:<br />
+        1. Grant ZaiCommunicator permission to access media devices, or<br />
+        2. Connect a working microphone and speaker/headphones
+      </div>
+      <div class="permissions-content" if.bind="inputDeviceNotFound">
+        Chrome was not able to pick up the configured microphone.<br/>
+        To continue, please try the following:<br />
+        1. Connect a working microphone
+      </div>
+      <div class="permissions-content" if.bind="outputDeviceNotFound">
+        Chrome was not able to pick up the configured speaker/headset.<br/>
+        To continue, please try the following:<br />
+        1. Connect a working speaker/headset
+      </div>
+      <div class="permissions-content" if.bind="permissionDenied">
+        ZaiCommunicator permission to access media devices has been denied. <br/>
+        To continue, please try the following:<br />
+        1. Grant ZaiCommunicator permission to access media devices
+      </div>
+      <br />
+      <div class="permissions-content">
+        For any assistance, please contact Zailab Support at
+        <a href="mailto:support@zailab.com">support@zailab.com</a> or visit our
+        <a
+          href="https://zailab.zendesk.com/hc/en-us/articles/360001640613-How-do-I-install-the-ZaiCommunicator-wephone-"
+          target="_blank"
+          >knowledge base</a
+        >.
+      </div>
+    </div>
+
+    <div class="button-holder">
+      <button class="ready" click.trigger="confirm()">Confirm</button>
+    </div>
+  </div>
+</template>

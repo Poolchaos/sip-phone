@@ -1,0 +1,40 @@
+<template>
+  <div
+    class="presence-container"
+    mouseenter.trigger="hasHover()"
+    mouseleave.trigger="noHover()"
+    if.bind="presences.length"
+    class.bind="statusIsChanging || disabled || reconnecting || manual ? 'disabled': ''"
+  >
+    <div click.trigger="toggleDropdown()" class="presence-drop-down">
+      <div
+        class="text text--ellipses"
+        style="text-transform: capitalize;width: 112px;"
+        style.bind="selectedPresence.color ? 'color: ' + selectedPresence.color + '!important' : 'color:#a0acb5'"
+      >
+        ${selectedPresence.presenceCodeName.toLowerCase()}
+      </div>
+      <i class="z-icon z-icon-chevron-${showDropdown ? 'up': 'down'}"></i>
+    </div>
+    <div
+      class="menu-presence u-scroll-bar  u-scroll-bar--thick"
+      class.bind="showDropdown ? 'u-show': 'u-hidden'"
+      style="max-height: 250px;overflow: auto"
+    >
+      <div
+        class="item"
+        repeat.for="item of allPresences"
+        click.trigger="selectPresence(item)"
+      >
+        <div class="presence-color" style.bind="'background-color: ' + item.color"></div>
+        <div
+          class="text--ellipses"
+          style="width: 112px;text-transform: capitalize;"
+          title.bind="item.presenceCodeName"
+        >
+          ${item.presenceCodeName}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

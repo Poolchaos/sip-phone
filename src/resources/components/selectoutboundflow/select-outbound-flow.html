@@ -1,0 +1,16 @@
+<template>
+  <div
+    class="flow-container"
+    mouseenter.trigger="hasHover()"
+    mouseleave.trigger="noHover()"
+    if.bind="outboundFlows.length"
+  >
+    <div click.trigger="toggleDropdown()" class="flow-drop-up ${disconnected ? 'disabled':''}">
+      <div class="text" title.bind="selectedFlow.flowName">${selectedFlow.flowName}</div>
+      <i class="z-icon z-icon-chevron-${showDropdown ? 'down': 'up'}"></i>
+    </div>
+    <div class="menu-flow" class.bind="showDropdown ? 'u-show': 'u-hidden'">
+      <div class="item" repeat.for="item of outboundFlows" click.trigger="selectItem(item)">${item.flowName}</div>
+    </div>
+  </div>
+</template>

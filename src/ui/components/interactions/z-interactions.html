@@ -1,0 +1,20 @@
+<template>
+
+  <z-single-interaction
+    if.bind="callInfo"
+    show.bind="!transferEnabled"
+    rtc-session.bind="callInfo"
+    is-wrap-up.bind="isWrapUp"
+    interactions.bind="interactions"
+    interaction.bind="interactions[0]"
+    wrap-up-submitting.bind="wrapUpSubmitting"
+    enabletransfer.trigger="enableTransfer($event.detail)"
+    toggle-mute-handler.bind="toggleMuteHandler"
+    toggle-hold-handler.bind="toggleHoldHandler"
+    do-transfer-handler.bind="doTransferHandler"
+    do-start-call-handler.bind="doStartCallHandler"
+    do-end-call-handler.bind="doEndCallHandler"
+    do-end-wrapup-handler.bind="doEndWrapupHandler"
+  ></z-single-interaction>
+
+</template>

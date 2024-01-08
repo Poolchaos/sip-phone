@@ -1,0 +1,31 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../base
+
+namespace: default
+images:
+- name: ZAI_COMMUNICATOR
+  newName: ${imageRepository}
+  newTag: '${projectVersion}'
+
+patches:
+- path: patches/ingress-host.yaml
+  target:
+    kind: Ingress
+    name: sip-phone
+
+patchesStrategicMerge:
+  - patches/pod-affinity.yaml
+
+replacements:
+- source:
+    kind: Deployment
+    name: sip-phone
+    fieldPath: metadata.labels.app
+  targets:
+  - select:
+      name: sip-phone
+      kind: Deployment
+    fieldPaths:
+    - spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution.0.labelSelector.matchExpressions.[key=app].values.0

@@ -1,0 +1,93 @@
+<template>
+  <div class="options">
+    <div class="container">
+      <div class="header-container">
+        Settings
+      </div>
+
+      <div class="options-form">
+        <form>
+          <div>
+            <h4>Microphone</h4>
+            <div class="flex flex--direction-rows">
+              <span class="class hoverable flex flex--direction-rows">
+                <div style="padding-right: 10px;">
+                  <select value.bind="selectedInput">
+                    <option if.bind="!devices.audioinput.length">No devices detected</option>
+                    <option repeat.for="item of devices.audioinput">${item.displayLabel}</option>
+                  </select>
+                </div>
+                <img
+                  src="../../../assets/images/play.png"
+                  height="20px"
+                  width="20px"
+                  class="hoverable"
+                  click.trigger="testInputDevice()"
+                  if.bind="!testingMic"
+                >
+                <img
+                  src="../../../assets/images/stop.png"
+                  height="20px"
+                  width="20px"
+                  class="hoverable"
+                  click.trigger="stopTestInputDevice()"
+                  if.bind="testingMic"
+                >
+              </span>
+            </div>
+          </div>
+          <div>
+            <h4>Speaker</h4>
+            <div class="flex flex--direction-rows">
+              <span class="class hoverable flex flex--direction-rows">
+                <div style="padding-right: 10px;">
+                  <select value.bind="selectedOutput">
+                    <option if.bind="!devices.audiooutput.length">No devices detected</option>
+                    <option repeat.for="item of devices.audiooutput">${item.displayLabel}</option>
+                  </select>
+                </div>
+                <img
+                  src="../../../assets/images/high-volume.png"
+                  height="20px"
+                  width="20px"
+                  class="hoverable"
+                  click.trigger="testOutputDevice()"
+                >
+              </span>
+            </div>
+          </div>
+          <div class="field" style="margin-top: 10px;" class.bind="autoAnswerFeatureFlag ? 'disabled' : ''">
+            <label class="label-container">
+              Auto Answer
+              <input type="checkbox" name="public" checked.bind="autoAnswer" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div class="field" style="margin-top: 10px;" class.bind="incomingCallPopFeatureFlag ? 'disabled' : ''">
+            <label class="label-container">
+              Incoming Call Pop
+              <input type="checkbox" name="public" checked.bind="incomingCall" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div class="field" style="margin-top: 10px;" if.bind="logsFeatureFlag">
+            <label class="label-container">
+              Enable Logging
+              <input type="checkbox" name="public" checked.bind="logs" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+
+          <div style="display: flex;justify-content: space-between;margin-top: 20px;">
+            <div class="button-pink width-48" tabindex="0" click.trigger="ok()">
+              <div class="visible content">Done</div>
+            </div>
+            <div class="button-grey width-48" class.bind="message?'disabled':''" tabindex="1" click.trigger="cancel()">
+              <div class="content">Cancel</div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>

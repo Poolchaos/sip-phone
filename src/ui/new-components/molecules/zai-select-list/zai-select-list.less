@@ -1,0 +1,42 @@
+@import '../../../../styles/colors';
+
+.new-phone-base-wrapper {
+  .zai-select-list {
+    display: inline-flex;
+    align-items: center;
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+
+    &__options {
+      background-color: white;
+      border-radius: 0.3em;
+      overflow: hidden;
+      z-index: 60;
+      position: absolute;
+      top: 2em;
+      left: 0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      visibility: hidden;
+
+      &.active {
+        visibility: visible;
+      }
+    }
+
+    &__toggle {
+      align-self: flex-end;
+      color: white;
+      padding-left: 0.5em;
+      font-size: 0.8em;
+    }
+
+    &.selected {
+    }
+
+    &.disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+}

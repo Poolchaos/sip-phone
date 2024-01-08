@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../base
+
+namespace: default
+images:
+- name: ZAI_COMMUNICATOR
+  newName: ${imageRepository}
+  newTag: '${projectVersion}'
+
+patchesJson6902:
+- path: patches/ingress-host.yaml
+  target:
+    kind: Ingress
+    name: sip-phone

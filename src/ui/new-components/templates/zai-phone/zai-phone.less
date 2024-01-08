@@ -1,0 +1,33 @@
+.new-phone-base-wrapper {
+  .zai-phone {
+    width: 320px;
+    height: 568px;
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+      background: #002e4d;
+    }
+
+    &__body {
+      flex-grow: 1;
+      overflow: auto;
+
+      > * {
+        height: 100%;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    &__footer {
+      background: #002e4d;
+      margin-top: auto;
+    }
+
+    > zai-button {
+      margin-top: auto;
+    }
+  }
+}

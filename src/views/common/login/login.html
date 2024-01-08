@@ -1,0 +1,49 @@
+<template>
+  <div id="login-page">
+    <div class="message-welcome">
+      <div class="main">Welcome</div>
+      <div class="sub">Log in and let's get started.</div>
+    </div>
+
+    <div class="error-message">
+      <div class="message" if.bind="appStore.login.error">
+        There was a problem logging you in. Please check your details and try again, or use the Forgot Password link
+        below.<br/>
+        [${appStore.login.error.message}]
+      </div>
+    </div>
+
+    <div class="login-details" class.bind="autoLoginEnabled ? 'disabled' : ''">
+      <form class="login-form ${submitting ? 'disabled' : ''}" ref="loginForm" submit.trigger="login()">
+        <div class="field" class.bind="appStore.login.error ? 'error' : ''">
+          <div class="item">
+            <input class="email" name="identity" type="text" placeholder="Email" value.bind="identity" required />
+            <i class="z-icon z-icon-envelope"></i>
+          </div>
+        </div>
+        <div class="field" class.bind="appStore.login.error ? 'error' : ''">
+          <div class="item">
+            <input
+              class="password"
+              name="password"
+              type="password"
+              placeholder="Password"
+              value.bind="password"
+              required
+            />
+            <i class="z-icon z-icon-lock"></i>
+          </div>
+        </div>
+        <button class="button-pink ${submitting ? 'loading' : ''}">SIGN IN</button>
+      </form>
+    </div>
+
+    <div class="message-forgot ${submitting ? 'disabled' : ''}">
+      <a click.delegate="openForgotPassword()" class="item">Forgot Password?</a>
+    </div>
+
+    <div class="message-forgot disabled">
+      <div if.bind="appVersion">v${appVersion} ${appBuild ? '('+ appBuild + ')' : ''}</div>
+    </div>
+  </div>
+</template>

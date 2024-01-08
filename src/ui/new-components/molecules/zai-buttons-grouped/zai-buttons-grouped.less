@@ -1,0 +1,45 @@
+@import '../../../../styles/colors';
+
+.new-phone-base-wrapper {
+  zai-buttons-grouped {
+    display: flex;
+    flex-grow: 1;
+    font-size: 1em;
+  }
+  .zai-buttons-grouped {
+    display: flex;
+    flex-grow: 1;
+
+    zai-button {
+      display: flex;
+      flex-grow: 1;
+
+      .zai-button {
+        border-right: 1px solid @grey-medium;
+
+        &__icon {
+          font-size: 0.5rem;
+          padding-top: 0.25em;
+          padding-bottom: 0.25em;
+        }
+      }
+
+      &:first-child,
+      &:only-child {
+        .zai-button {
+          border-top-left-radius: 0.3em;
+          border-bottom-left-radius: 0.3em;
+        }
+      }
+
+      &:last-child,
+      &:only-child {
+        .zai-button {
+          border-right: none;
+          border-top-right-radius: 0.3em;
+          border-bottom-right-radius: 0.3em;
+        }
+      }
+    }
+  }
+}

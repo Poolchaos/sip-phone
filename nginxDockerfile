@@ -1,0 +1,11 @@
+FROM    nginx:alpine
+
+# Environmental variables
+ENV     USER=root HOME=/tmp
+
+COPY    ./nginx.conf /etc/nginx/conf.d/default.conf
+ADD     ./dist                     /dist
+ADD     ./favicon.ico              /favicon.ico
+
+
+EXPOSE  8000

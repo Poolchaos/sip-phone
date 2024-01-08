@@ -1,0 +1,52 @@
+@startuml
+
+actor User order 1
+participant "Login (UI Component) [FG only]" as Login order 10
+participant "ApplicationState" as ApplicationState order 30
+participant "SessionController" as SessionController order 20
+participant "MessageBus" as MessageBus order 40
+participant "SessionCommandProcessor (BG only)" as SessionCommandProcessor order 50
+participant Redux order 60
+
+== User Actions are issued as Commands via Controllers ==
+
+User -> Login : Clicks Sign In
+User <-- Login
+
+Login -> SessionController : login({...creds})
+Login <-- SessionController
+SessionController -> MessageBus : issues Login Command
+SessionController <-- MessageBus
+
+== Command Processors process Commands, dispatching Actions to Redux (or otherwise invoking Service methods ) ==
+
+par (async)
+MessageBus --> SessionCommandProcessor : on Login Command
+SessionCommandProcessor -> Redux : Dispatch Login Action
+Redux -> : [Update Store]
+Redux -> MessageBus : [Publish Application Events]
+end
+
+== Application Events are meant to be consumed anywhere in the Application ==
+
+par (async) on Application Event (e.g. "LOGIN_SUCCEEDED")
+Login --> SessionController : subscribeToEvents()
+Login <- SessionController : LOGIN_SUCCEEDED Event
+Login <- SessionController : LOGIN_FAILED Event
+Login <- SessionController : LOGIN_CANCELLED Event
+
+end
+
+== Redux store provides single unified application state ==
+
+par (async) on State Change
+Login -> ApplicationState : getState()
+ApplicationState -> Redux : getState()
+ApplicationState <- Redux : state
+Login <- ApplicationState : state
+
+end
+
+@enduml
+
+

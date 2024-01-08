@@ -1,0 +1,32 @@
+{
+  "name": "${projectName}",
+  "version": "${version}",
+  "description": "${description}",
+  "permissions": ["activeTab", "notifications", "tabs", "contextMenus", "*://localhost/*"],
+  "icons": {
+    "16": "images/default.png",
+    "48": "images/zai-icon.png",
+    "128": "images/${storeIcon}.png"
+  },
+  "omnibox": {
+    "keyword": "zailab, zai, phone, sip, voip, c2d, click 2 dial, click to dial, dialler, soft phone, web phone, sip phone, zai phone, zailab phone, zai web phone, zailab web phone"
+  },
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self' 'unsafe-eval' http://localhost:8080 https://ajax.googleapis.com https://api.rollbar.com ; object-src 'self'; ",
+  "background": {
+    "page": "index.html",
+    "persistent": true
+  },
+  "options_page": "index.html#/options",
+  "browser_action": {
+    "default_popup": "index.html#/popup"
+  },
+  "web_accessible_resources": ["widget.html", "reset-style.html"],
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Alt+X"
+      }
+    }
+  }
+}

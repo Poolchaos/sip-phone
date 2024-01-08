@@ -1,0 +1,18 @@
+<template>
+  <!-- <dialpad 
+  number.two-way="targetNumber"
+  ></dialpad> -->
+  <div class="z-transfer height--full flex flex--direction-cols flex--justify-between">
+    <z-dialpad
+      name="transfer-dialpad"
+      number.two-way="targetNumber"
+      dtmf-key-handler.bind="transferDialpadDtmfHandler"
+      submit-number-handler.bind="submitTransferHandler"
+    ></z-dialpad>
+
+    <div class="transfer-container">
+      <accept-transfer-button transfer.trigger="transfer()" disabled.bind="!targetNumber"></accept-transfer-button>
+      <cancel-transfer-button canceltransfer.trigger="cancel()"></cancel-transfer-button>
+    </div>
+  </div>
+</template>

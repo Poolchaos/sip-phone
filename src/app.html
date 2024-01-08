@@ -1,0 +1,24 @@
+<template>
+  <span
+    class="update-toggle centered app-width header-height dark-blue-background flex flex--justify-around"
+    if.bind="appStore.versionUpdateRequired && !appStore.callInfo.onCall"
+    click.delegate="onToggleUpdate()"
+  >
+    <div class="flex--position-center-v flex" style="align-items: center;">
+      <img
+        src="./assets/images/reconnecting.png"
+        height="25px"
+        width="25px"
+      >&nbsp;
+      <span>
+        Update available
+      </span>
+    </div>
+    <button class="button-pink" style="width: 100px;">REFRESH</button>
+  </span
+  >
+  <z-background></z-background>
+  <div>
+    <router-view> </router-view>
+  </div>
+</template>

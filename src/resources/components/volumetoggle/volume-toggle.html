@@ -1,0 +1,36 @@
+<template>
+  <div class="volume-slider ${onCall ? '' : 'full'}">
+    <img
+      if.bind="isMuted"
+      src="../../../assets/images/mute.png"
+      height="25px"
+      width="25px"
+      class="hoverable"
+      click.trigger="toggleMute()"
+    >
+    <img
+      if.bind="isMedium"
+      src="../../../assets/images/low-volume.png"
+      height="25px"
+      width="25px"
+      class="hoverable"
+      click.trigger="toggleMute()"
+    >
+    <img
+      if.bind="isFull"
+      src="../../../assets/images/high-volume.png"
+      height="25px"
+      width="25px"
+      class="hoverable"
+      click.trigger="toggleMute()"
+    >
+    <input
+      type="range"
+      value.bind="volume"
+      min="0"
+      max="1"
+      step="0.1"
+      style="margin-left: 10px; flex-grow: 1;align-self: center;"
+    >
+  </div>
+</template>

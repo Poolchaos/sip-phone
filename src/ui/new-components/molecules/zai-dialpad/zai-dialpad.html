@@ -1,0 +1,78 @@
+<template>
+  <div class="zai-dialpad" id="dialpad-${name}">
+    <div class="zai-dialpad__input-container">
+      <!--      input slot in dialpad?-->
+      <input
+        class="zai-dialpad__input js-number-input"
+        type="text"
+        placeholder="Enter number"
+        value.bind="number | telCharsOnly"
+        ref="targetNumber"
+      />
+      <!--      dropdown-nav slot in dialpad?-->
+      <!--      old styles app.less = .history-holder-->
+      <dropdown-nav></dropdown-nav>
+    </div>
+    <!--      keypad slot in dialpad?-->
+    <div class="zai-dialpad__keypad">
+      <button class="zai-dialpad__keypad__key anim-pulse" id="${name}-js-key-1" click.trigger="select('1')">
+        <span class="zai-dialpad__keypad__key-digit">1</span>
+        <span class="zai-dialpad__keypad__key-text"></span>
+      </button>
+      <button class="zai-dialpad__keypad__key anim-pulse" id="${name}-js-key-2" click.trigger="select('2')">
+        <span class="zai-dialpad__keypad__key-digit">2</span>
+        <span class="zai-dialpad__keypad__key-text">ABC</span>
+      </button>
+      <button class="zai-dialpad__keypad__key anim-pulse" id="${name}-js-key-3" click.trigger="select('3')">
+        <span class="zai-dialpad__keypad__key-digit">3</span>
+        <span class="zai-dialpad__keypad__key-text">DEF</span>
+      </button>
+      <button class="zai-dialpad__keypad__key anim-pulse" id="${name}-js-key-4" click.trigger="select('4')">
+        <span class="zai-dialpad__keypad__key-digit">4</span>
+        <span class="zai-dialpad__keypad__key-text">GHI</span>
+      </button>
+      <button class="zai-dialpad__keypad__key anim-pulse" id="${name}-js-key-5" click.trigger="select('5')">
+        <span class="zai-dialpad__keypad__key-digit">5</span>
+        <span class="zai-dialpad__keypad__key-text">JKL</span>
+      </button>
+      <button class="zai-dialpad__keypad__key anim-pulse" id="${name}-js-key-6" click.trigger="select('6')">
+        <span class="zai-dialpad__keypad__key-digit">6</span>
+        <span class="zai-dialpad__keypad__key-text">MNO</span>
+      </button>
+      <button class="zai-dialpad__keypad__key anim-pulse" id="${name}-js-key-7" click.trigger="select('7')">
+        <span class="zai-dialpad__keypad__key-digit">7</span>
+        <span class="zai-dialpad__keypad__key-text">PQRS</span>
+      </button>
+      <button class="zai-dialpad__keypad__key anim-pulse" id="${name}-js-key-8" click.trigger="select('8')">
+        <span class="zai-dialpad__keypad__key-digit">8</span>
+        <span class="zai-dialpad__keypad__key-text">TUV</span>
+      </button>
+      <button class="zai-dialpad__keypad__key anim-pulse" id="${name}-js-key-9" click.trigger="select('9')">
+        <span class="zai-dialpad__keypad__key-digit">9</span>
+        <span class="zai-dialpad__keypad__key-text">WXYZ</span>
+      </button>
+      <button
+        class="zai-dialpad__keypad__key anim-pulse asterisk"
+        id="${name}-js-key-asterisk"
+        click.trigger="select('*')"
+      >
+        <span class="zai-dialpad__keypad__key-digit">*</span>
+        <span class="zai-dialpad__keypad__key-text"></span>
+      </button>
+      <button
+        class="zai-dialpad__keypad__key anim-pulse"
+        id="${name}-js-key-0"
+        mousedown.trigger="mouseDown()"
+        mouseup.trigger="mouseUp('0')"
+        mouseleave.trigger="mouseLeave()"
+      >
+        <span class="zai-dialpad__keypad__key-digit">0</span>
+        <span class="zai-dialpad__keypad__key-text">+</span>
+      </button>
+      <button class="zai-dialpad__keypad__key anim-pulse hash" id="${name}-js-key-hash" click.trigger="select('#')">
+        <span class="zai-dialpad__keypad__key-digit">#</span>
+        <span class="zai-dialpad__keypad__key-text"></span>
+      </button>
+    </div>
+  </div>
+</template>

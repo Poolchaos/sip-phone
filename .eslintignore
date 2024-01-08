@@ -1,0 +1,5 @@
+
+node_modules
+
+# environment.ts seems to be generated
+/src/environment.ts

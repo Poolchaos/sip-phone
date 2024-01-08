@@ -1,0 +1,19 @@
+{
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+  ],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current",
+          // "browsers": [ "last 2 versions" ]
+        },
+        "loose": true,
+        "modules": "commonjs"
+      },
+    ],
+  ]
+}

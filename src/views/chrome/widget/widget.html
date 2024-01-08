@@ -1,0 +1,116 @@
+<template>
+  <div class="zai-wrapper ${isEmbedded ? 'height-570' : ''}" ref="container" id="widget_container">
+    <div class="zai-header" ref="menu">
+      <div style="position:absolute;top: 0;right: 0;z-index:100;font-size: 12px;margin: 2px 5px;">v${appVersion}</div>
+      <div class="zai-header-left">
+        <span class="z-icon-zai-icon"
+          ><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span
+          ><span class="path5"></span><span class="path6"></span>
+        </span>
+        <div class="header-presence" style.bind="isEmbedded ? 'justify-content: center' : ''">
+          <span class="z-icon-zailab" if.bind="!callerId">
+            <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span
+            ><span class="path5"></span><span class="path6"></span>
+          </span>
+          <div class="name" if.bind="callerId">${callerId}</div>
+          <div class="status ${!appStore.sip || !appStore.ua ? 'disabled':''}">
+            <presence
+              presences.bind="appStore.presences"
+              presence.bind="appStore.selectedPresence"
+              reconnecting.bind="reconnecting"
+              manual.bind="manual"
+              select-handler.bind="selectPresenceHandler"
+              disabled.bind="appStore.user.hasAgentRole && appStore.routingStatus === 'Ready'"
+              if.bind="
+                appStore.user &&
+                !isEmbedded &&
+                appStore.selectedPresence &&
+                appStore.presences
+              "
+              status-is-changing.bind="presenceChanging || loggingIn"
+            ></presence>
+          </div>
+        </div>
+      </div>
+
+      <div class="zai-header-right">
+        <div>
+          <span title="No microphone detected" if.bind="noMicDetected">
+            <i class="fas red fa-microphone-alt-slash"></i>
+          </span>
+          <span title="No speaker detected" if.bind="noSpeakerDetected" class="is-relative">
+            <i class="slash"></i>
+            <i class="fas red fa-volume-up"></i>
+          </span>
+        </div>
+        <div click.trigger="toggleDropdown()" class="logout-drop-down">
+          <i class="z-icon z-icon-menu" class.bind="showDropdown ? 'menu-rotate': ''"></i>
+        </div>
+        <div
+          class="menu-logout"
+          class.bind="showDropdown ? 'u-show': 'u-hidden'"
+          mouseenter.trigger="hasHover()"
+          mouseleave.trigger="noHover()">
+          <div
+            class="item"
+            click.trigger="viewSettings()"
+          >
+            <span class="z-icon" style="font-size: 1rem;margin-right: 0.4rem;"">&#9881;</span> Settings
+          </div>
+          <div
+            if.bind="appStore.user && !isEmbedded"
+            class="item"
+            class.bind="appStore.routingStatus === 'Ready' ? 'disabled' : ''"
+            click.trigger="logout()"
+          >
+            <i class="z-icon z-icon-signout"></i> Sign Out
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="zai-sub-header" if.bind="appStore.user || isEmbedded" style.bind="isEmbedded ? 'margin-top: -1px;height:16px;' : ''">
+      <div class="zai-sub-header-left ${!appStore.sip || !appStore.ua ? 'disabled':''}">
+        <routing-status
+          i-am-checked.bind="appStore.routingStatus === 'Ready'"
+          reconnecting.bind="reconnecting"
+          manual.bind="manual"
+          status-is-changing.bind="routingStatusChanging || appStore.login.loading"
+          on-label="On Duty"
+          off-label="Off Duty"
+          status.bind="appStore.routingStatus"
+          toggle.trigger="changeRoutingStatus($event)"
+          if.bind="appStore.user.hasAgentRole && !isEmbedded"
+        ></routing-status>
+      </div>
+      <div class="zai-sub-header-right ${!appStore.sip ? 'disabled':''}">
+        <activity
+          if.bind="!isEmbedded"
+          activity.bind="appStore.memberActivity"
+          router-status-activity.bind="appStore.routingStatusActivity"
+        ></activity>
+      </div>
+    </div>
+
+    <div class="zai-content" ref="view">
+      <router-view></router-view>
+    </div>
+
+    <div class="zai-footer" if.bind="appStore.user || isEmbedded">
+      <div class="zai-footer-left">
+        <select-outbound-flow
+          reconnecting.bind="reconnecting || appStore.login.loading"
+          manual.bind="manual"
+          disconnected.bind="!appStore.sip || !appStore.ua"
+          selected-flow.bind="appStore.interactionFlows.selectedFlow"
+          select-handler.bind="selectFlowHandler"
+          outbound-flows.bind="appStore.interactionFlows.outboundFlowOptions"
+          outbound-flow-options.bind="appStore.interactionFlows.outboundFlowOptions"
+          if.bind="!isEmbedded"
+        ></select-outbound-flow>
+      </div>
+      <div class="zai-footer-right">
+        <sip-connection-state></sip-connection-state>
+      </div>
+    </div>
+  </div>
+</template>

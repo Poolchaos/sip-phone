@@ -1,0 +1,55 @@
+@import '../../../../styles/colors';
+
+.new-phone-base-wrapper {
+  zai-bullet {
+    display: inline-flex;
+  }
+
+  .zai-bullet {
+    display: inline-flex;
+    margin-right: 0.5em;
+    width: 0.5em;
+    height: 100%;
+
+    &::before {
+      content: '';
+      align-self: center;
+      width: 6px;
+      height: 6px;
+      background-color: @grey;
+      border-radius: 50%;
+    }
+
+    &.color {
+      &--grey {
+        &::before {
+          background-color: @grey;
+        }
+      }
+
+      &--green {
+        &::before {
+          background-color: @green;
+        }
+      }
+
+      &--blue {
+        &::before {
+          background-color: @blue;
+        }
+      }
+
+      &--yellow {
+        &::before {
+          background-color: @yellow;
+        }
+      }
+
+      &--red {
+        &::before {
+          background-color: @red;
+        }
+      }
+    }
+  }
+}

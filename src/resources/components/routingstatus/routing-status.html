@@ -1,0 +1,9 @@
+<template>
+  <div class="checkbox-container" class.bind="statusIsChanging ?'disabled': ''">
+    <input type="checkbox" name="public" checked.bind="iAmChecked" click.trigger="changeRoutingStatus($event)" />
+    <label
+      >${displayText}
+      <i class="z-icon z-icon-chevron-double-${iAmChecked ? 'left' : 'right'}"></i>
+    </label>
+  </div>
+</template>

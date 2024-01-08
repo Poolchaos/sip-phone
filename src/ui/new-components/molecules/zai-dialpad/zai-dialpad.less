@@ -1,0 +1,128 @@
+@import '../../../../styles/colors';
+
+.new-phone-base-wrapper {
+  zai-dialpad {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  .zai-dialpad {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-bottom: 1em;
+
+    &__input-container {
+      display: flex;
+      border-bottom: 1px solid @grey-medium;
+      padding-bottom: 0.5em;
+      margin-bottom: 1em;
+    }
+
+    &__input {
+      flex-grow: 1;
+      border: none;
+      outline: none;
+      padding-left: 1em;
+      padding-right: 1em;
+      font: inherit;
+      color: @grey;
+
+      &::placeholder {
+        color: @grey-dark;
+      }
+    }
+
+    &__keypad {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      flex-grow: 1;
+
+      &__key {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        flex-shrink: 1;
+        flex-grow: 1;
+        flex-basis: 33.33%;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        transition: 0.3s ease;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        padding-left: 0;
+        padding-right: 0;
+        color: @grey;
+        font-family: 'Titillium Web', Arial, sans-serif;
+        overflow: hidden;
+
+        &-digit {
+          font-size: 2em;
+          overflow: hidden;
+        }
+
+        &-text {
+          font-size: 0.75em;
+          text-transform: uppercase;
+        }
+
+        &.asterisk {
+          .zai-dialpad__keypad__key-digit {
+            transform: rotate(53deg);
+            font-size: 3em;
+            line-height: 0.5em;
+            padding-top: 0.5em;
+          }
+        }
+
+        &.hash {
+          font-style: italic;
+        }
+
+        &.anim-pulse {
+        }
+
+        &.active {
+          position: relative;
+
+          &::before {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background-color: @grey-dark;
+            animation: animPulse 0.3s ease-out;
+            z-index: 50;
+          }
+        }
+
+        &:hover {
+          background-color: @grey-light;
+        }
+      }
+    }
+  }
+
+  @keyframes animPulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(180, 186, 190, 0.4);
+      background-color: @grey-light;
+    }
+
+    70% {
+      box-shadow: 0 0 0 5em rgba(180, 186, 190, 0);
+      background-color: @grey-super-light;
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgba(180, 186, 190, 0);
+      background-color: transparent;
+    }
+  }
+}

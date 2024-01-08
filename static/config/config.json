@@ -1,0 +1,58 @@
+{
+  "default": {
+    "apiRouterEndpoint": "https://region.dev1.zailab.com/",
+    "base": "https://api.dev1.zailab.com",
+    "telephony_api_base": "https://rtc.dev1.zailab.com",
+    "ws": "wss://api.dev1.zailab.com/clientexchange",
+    "frontEnd": "http://localhost:8080",
+    "frontEndConversations": "https://dev1.zailab.com",
+    "_domain": "sip.dev1.zailab.com",
+    "_host": "sip.dev1.zailab.com",
+    "_port": "5070"
+  },
+  "dev1": {
+    "apiRouterEndpoint": "https://region.dev1.zailab.com/",
+    "base": "https://api.dev1.zailab.com",
+    "telephony_api_base": "https://rtc.dev1.zailab.com",
+    "ws": "wss://api.dev1.zailab.com/clientexchange",
+    "frontEnd": "https://phone.dev1.zailab.com",
+    "frontEndConversations": "https://dev1.zailab.com",
+    "_domain": "sip.dev1.zailab.com",
+    "_host": "sip.dev1.zailab.com",
+    "_port": "5070"
+  },
+  "staging": {
+    "apiRouterEndpoint": "https://region.zailab.com/",
+    "base": "https://api.staging.zailab.com",
+    "telephony_api_base": "https://rtc.za.staging.zailab.com",
+    "ws": "wss://api.staging.zailab.com/clientexchange",
+    "frontEnd": "https://phone.zailab.com",
+    "frontEndConversations": "https://conversations.zailab.com",
+    "_domain": "sip.staging.zailab.com",
+    "_host": "sip.staging.zailab.com",
+    "_port": "5070"
+  },
+  "prod": {
+    "apiRouterEndpoint": "https://region.zailab.com/",
+    "base": "https://api.zailab.com",
+    "telephony_api_base": "https://za.zailab.com",
+    "ws": "wss://api.zailab.com/clientexchange",
+    "frontEnd": "https://phone.zailab.com",
+    "frontEndConversations": "https://conversations.zailab.com",
+    "_domain": "sip.zailab.com",
+    "_host": "sip.zailab.com",
+    "_port": "5070"
+  },
+  "prod-intl": {
+    "apiRouterEndpoint": "https://region.zailab.com/",
+    "base": "https://api-intl.zailab.com",
+    "telephony_api_base": "https://rtc.usw2.zailab.com",
+    "ws": "wss://api-intl.zailab.com/clientexchange",
+    "frontEnd": "https://phone.zailab.com",
+    "frontEndConversations": "https://conversations.zailab.com",
+    "_domain": "sip.zailab.com",
+    "_host": "sip.zailab.com",
+    "_port": "5070"
+  },
+  "login": "v1/user/passports/authenticate"
+}

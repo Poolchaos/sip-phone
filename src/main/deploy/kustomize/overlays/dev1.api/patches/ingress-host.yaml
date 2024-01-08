@@ -1,0 +1,3 @@
+- op: replace
+  path: /spec/rules/0/host
+  value: sip-phone.kube.api.dev1.zailab.com

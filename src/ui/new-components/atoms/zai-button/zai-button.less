@@ -1,0 +1,147 @@
+@import '../../../../styles/colors';
+
+.new-phone-base-wrapper {
+  zai-button {
+    &.rounded {
+      .zai-button {
+        border-top-left-radius: 0.3em;
+        border-top-right-radius: 0.3em;
+        border-bottom-left-radius: 0.3em;
+        border-bottom-right-radius: 0.3em;
+      }
+    }
+  }
+
+  .zai-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    background-color: @grey-light;
+    cursor: pointer;
+    transition: 0.2s ease;
+    position: relative;
+    font-weight: 600;
+
+    &__icon {
+      ~ .zai-button__text > * {
+        padding-left: 1em;
+      }
+
+      &--green {
+        color: @green;
+      }
+
+      &--red {
+        color: @red;
+      }
+
+      &--pink {
+        color: @pink;
+      }
+
+      &--yellow {
+        color: @yellow;
+      }
+    }
+
+    &.button-color {
+      &--grey {
+        background-color: @grey-light;
+
+        &:hover {
+          background-color: @grey-medium;
+        }
+      }
+
+      &--green {
+        background-color: @green;
+        color: white;
+
+        &:hover {
+          filter: saturate(0.85);
+        }
+      }
+
+      &--blue {
+        background-color: @blue;
+        color: white;
+
+        &:hover {
+          filter: saturate(0.85);
+        }
+      }
+
+      &--red {
+        background-color: @red;
+        color: white;
+
+        &:hover {
+          filter: saturate(0.85);
+        }
+      }
+
+      &--pink {
+        background-color: @pink;
+        color: white;
+
+        &:hover {
+          filter: saturate(0.85);
+        }
+      }
+
+      &--yellow {
+        background-color: @yellow;
+        color: white;
+
+        &:hover {
+          filter: saturate(0.85);
+        }
+      }
+    }
+
+    &.disabled {
+      filter: saturate(0.3);
+      pointer-events: none;
+    }
+
+    &[data-title] {
+      position: relative;
+
+      &::after {
+        content: attr(data-title);
+        position: absolute;
+        font-size: 0.75em;
+        top: -1em;
+        white-space: nowrap;
+        opacity: 0;
+        z-index: 99999;
+        visibility: hidden;
+        transition: 0.3s ease;
+      }
+
+      &:hover {
+        &::after {
+          opacity: 1;
+          top: -1.5em;
+          visibility: visible;
+        }
+      }
+    }
+
+    &.selected {
+      &::after {
+        opacity: 1;
+        top: -1.5em;
+        visibility: visible;
+        color: @blue;
+      }
+
+      .zai-button__icon {
+        color: @blue;
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<template>
+  <div class="zai-user-profile-action-bar">
+    <div class="zai-user-profile-action-bar__profile">
+      <div class="zai-user-profile-action-bar__profile-info">
+        <slot name="profile-info"></slot>
+      </div>
+      <div class="zai-user-profile-action-bar__profile-activity">
+        <slot name="profile-activity"></slot>
+      </div>
+    </div>
+    <div class="zai-user-profile-action-bar__actions">
+      <slot name="actions"></slot>
+    </div>
+  </div>
+</template>

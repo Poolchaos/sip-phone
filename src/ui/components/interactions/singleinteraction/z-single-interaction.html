@@ -1,0 +1,37 @@
+<template>
+  <div class="flex-col">
+    <div class="container-details" if.bind="isWrapUp">
+      <div class="icon-holder">
+        <i class="z-icon z-icon-hexagon yellow"></i>
+        <i
+          class="z-icon z-icon-hourglass"
+        ></i>
+      </div>
+      <div class="details-holder" if.bind="callInfo">
+        <div class="state">Wrap Up</div>
+        <div class="number">${callInfo.remote}</div>
+        <timer
+          if.bind="callInfo.endTime"
+          start-time.bind="callInfo.endTime"
+        ></timer>
+
+        <div class="work-type" css="opacity: .5" if.bind="callInfo.workType">
+          Work Type: ${callInfo.workType}
+        </div>
+      </div>
+      <div class="details-holder">
+        <b>Interactions for Wrap Up: ${wrapUpInteractions.length}</b>
+      </div>
+    </div>
+
+    <div>
+      <div class="main-dialer">
+        <end-wrapup-button
+          click-handler.bind="doEndWrapupHandler"
+          disabled.bind="wrapUpSubmitting"
+        >
+        </end-wrapup-button>
+      </div>
+    </div>
+  </div>
+</template>

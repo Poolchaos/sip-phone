@@ -1,0 +1,28 @@
+<template>
+  <div id="disconnected-page">
+    <div class="disconnected-wrapper">
+      <div class="disconnected-state" if.bind="!appStore.connectionStopped">
+        <div class="icon-holder">
+          <i class="z-icon z-icon-hexagon"></i>
+          <i class="z-icon z-icon-disconnect rotating"></i>
+        </div>
+        <div class="content">
+          <div class="header">Connecting...</div>
+        </div>
+      </div>
+
+      <div class="disconnected-state" if.bind="appStore.connectionStopped">
+        <div class="content">
+          <div class="header">
+            <h4>Unable to connect to server.</h4>
+            Please check your network connection.<br/>
+            <span if.bind="appStore.globalError">[${appStore.globalError}]</span>
+          </div>
+        </div>
+        <button class="button-pink" click.delegate="reconnectDevice()">
+          Reconnect
+        </button>
+      </div>
+    </div>
+  </div>
+</template>

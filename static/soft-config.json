@@ -1,0 +1,17 @@
+{
+  "version": 0.1,
+  "apiEndpoints": {},
+  "platform": {
+    "id": "chrome",
+    "platformConfig": {
+      "chromeSocketName": "chrome.runtime.connect"
+    }
+  },
+  "sipConfig": {
+    "domain": "sip.zailab.com",
+    "host": "sip.zailab.com",
+    "port": 5070,
+    "stun": false,
+    "environment": "prod"
+  }
+}

@@ -1,0 +1,170 @@
+<template>
+  <div class="dialpad-container" id="dialpad-${name}">
+    <div class="top-search" ref="input">
+      <div class="input-holder">
+        <input
+          class="js-number-input prompt"
+          type="text"
+          placeholder="Enter number"
+          value.bind="number | telCharsOnly"
+          ref="targetNumber"
+        />
+        <!-- hide history for this sprint -->
+        <!-- <i class="z-icon z-icon-chevron-${showDropdown ? 'up': 'down'}" click.delegate="toggleDropdown()"></i> -->
+      </div>
+      <div
+        class="history-holder"
+        ref="numberResults"
+        if.bind="showDropdown"
+        mouseenter.trigger="hasHover()"
+        mouseleave.trigger="noHover()"
+      >
+        <div if.bind="!hasCallHistory" class="result">No call history</div>
+        <a
+          repeat.for="call of callHistory"
+          class="result"
+          click.delegate="selectExisting(call.number)"
+          if.bind="hasCallHistory"
+        >
+          <div class="content">
+            <div class="title">${call.number}</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="keypad">
+      <button class="key" id="${name}-js-key-1" click.trigger="select('1')">
+        <div class="holder pulse-single">
+          <div class="value">
+            1
+          </div>
+          <div class="label"></div>
+        </div>
+      </button>
+
+      <button class="key" id="${name}-js-key-2" click.trigger="select('2')">
+        <div class="holder pulse-single">
+          <div class="value">
+            2
+          </div>
+          <div class="label">
+            ABC
+          </div>
+        </div>
+      </button>
+
+      <button class="key" id="${name}-js-key-3" click.trigger="select('3')">
+        <div class="holder pulse-single">
+          <div class="value">
+            3
+          </div>
+          <div class="label">
+            DEF
+          </div>
+        </div>
+      </button>
+
+      <button class="key" id="${name}-js-key-4" click.trigger="select('4')">
+        <div class="holder pulse-single">
+          <div class="value">
+            4
+          </div>
+          <div class="label">
+            GHI
+          </div>
+        </div>
+      </button>
+
+      <button class="key" id="${name}-js-key-5" click.trigger="select('5')">
+        <div class="holder pulse-single">
+          <div class="value">
+            5
+          </div>
+          <div class="label">
+            JKL
+          </div>
+        </div>
+      </button>
+
+      <button class="key" id="${name}-js-key-6" click.trigger="select('6')">
+        <div class="holder pulse-single">
+          <div class="value">
+            6
+          </div>
+          <div class="label">
+            MNO
+          </div>
+        </div>
+      </button>
+
+      <button class="key" id="${name}-js-key-7" click.trigger="select('7')">
+        <div class="holder pulse-single">
+          <div class="value">
+            7
+          </div>
+          <div class="label">
+            PQRS
+          </div>
+        </div>
+      </button>
+
+      <button class="key" id="${name}-js-key-8" click.trigger="select('8')">
+        <div class="holder pulse-single">
+          <div class="value">
+            8
+          </div>
+          <div class="label">
+            TUV
+          </div>
+        </div>
+      </button>
+
+      <button class="key" id="${name}-js-key-9" click.trigger="select('9')">
+        <div class="holder pulse-single">
+          <div class="value">
+            9
+          </div>
+          <div class="label">
+            WXYZ
+          </div>
+        </div>
+      </button>
+
+      <button class="key star" id="${name}-js-key-asterisk" click.trigger="select('*')">
+        <div class="holder pulse-single">
+          <div class="value star">
+            *
+          </div>
+          <div class="label"></div>
+        </div>
+      </button>
+
+      <button
+        class="key zero"
+        id="${name}-js-key-0"
+        mousedown.trigger="mouseDown()"
+        mouseup.trigger="mouseUp('0')"
+        mouseleave.trigger="mouseLeave()"
+      >
+        <div class="holder pulse-single">
+          <div class="value zero">
+            0
+          </div>
+          <div class="label plus">
+            +
+          </div>
+        </div>
+      </button>
+
+      <button class="key hash" id="${name}-js-key-hash" click.trigger="select('#')">
+        <div class="holder pulse-single">
+          <div class="value hash">
+            #
+          </div>
+          <div class="label"></div>
+        </div>
+      </button>
+    </div>
+  </div>
+</template>
